@@ -137,6 +137,20 @@ class Tests(unittest.TestCase):
             for j in range(num_rows):
                 self.assertFalse(maze._cells[i][j].visited,
                     f"Cell at ({i},{j}) should not be visited after reset")
+    
+    def test_maze_solvable(self):
+        # Test that the generated maze is always solvable
+        num_cols = 5
+        num_rows = 5
+        maze = Maze(0, 0, num_rows, num_cols, 10, 10)
+        
+        # Try to solve the maze
+        self.assertTrue(maze.solve(), "Maze should be solvable")
+        
+        # Verify that after solving, there's a path of visited cells from start to end
+        # The visited flags should mark the solution path
+        self.assertTrue(maze._cells[0][0].visited, "Start cell should be visited")
+        self.assertTrue(maze._cells[num_cols-1][num_rows-1].visited, "End cell should be visited")
 
 if __name__ == "__main__":
     unittest.main() 
