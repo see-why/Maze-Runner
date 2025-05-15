@@ -44,10 +44,11 @@ class Tests(unittest.TestCase):
         )
     
     def test_maze_cells_initialized(self):
-        # Test that all cells are properly initialized
+        # Test that all cells are properly initialized with walls
+        # Create maze without entrance/exit
         num_cols = 3
         num_rows = 3
-        m4 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        m4 = Maze(0, 0, num_rows, num_cols, 10, 10, create_entrance_exit=False)
         
         # Check that all cells exist and have walls
         for i in range(num_cols):
