@@ -1,4 +1,6 @@
 from tkinter import Tk, BOTH, Canvas
+from line import Line
+from point import Point
 
 class Window:
     def __init__(self, width, height):
@@ -20,9 +22,26 @@ class Window:
     
     def close(self):
         self.running = False
+    
+    def draw_line(self, line, fill_color):
+        line.draw(self.canvas, fill_color)
 
 def main():
     win = Window(800, 600)
+    
+    # Create some test points
+    p1 = Point(100, 100)
+    p2 = Point(200, 200)
+    p3 = Point(300, 100)
+    
+    # Create and draw some lines
+    line1 = Line(p1, p2)
+    line2 = Line(p2, p3)
+    
+    # Draw the lines with different colors
+    win.draw_line(line1, "red")
+    win.draw_line(line2, "blue")
+    
     win.wait_for_close()
 
 if __name__ == "__main__":
