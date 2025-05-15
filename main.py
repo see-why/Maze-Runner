@@ -5,10 +5,11 @@ from window import Window
 def main():
     win = Window(800, 600)
     
-    # Create a maze with a 4x4 grid of cells
+    # Create a maze with a 12x12 grid of cells
     # Starting at (50,50)
-    # Each cell 50x50 pixels
-    maze = Maze(50, 50, 4, 4, 50, 50, win)
+    # Each cell 40x40 pixels
+    # Use seed=0 for reproducible testing
+    maze = Maze(50, 50, 12, 12, 40, 40, win, seed=0)
     
     win.wait_for_close()
 
