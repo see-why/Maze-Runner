@@ -11,6 +11,7 @@ class Maze:
         cell_size_x,
         cell_size_y,
         win=None,
+        create_entrance_exit=True
     ):
         self._x1 = x1
         self._y1 = y1
@@ -22,7 +23,8 @@ class Maze:
         self._cells = []
         
         self._create_cells()
-        self._break_entrance_and_exit()
+        if create_entrance_exit:
+            self._break_entrance_and_exit()
     
     def _create_cells(self):
         # Initialize the grid with empty lists for each column
