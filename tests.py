@@ -57,6 +57,29 @@ class Tests(unittest.TestCase):
                 self.assertTrue(m4._cells[i][j].has_right_wall)
                 self.assertTrue(m4._cells[i][j].has_top_wall)
                 self.assertTrue(m4._cells[i][j].has_bottom_wall)
+    
+    def test_entrance_and_exit(self):
+        # Test entrance and exit are properly created
+        num_cols = 5
+        num_rows = 5
+        m5 = Maze(0, 0, num_rows, num_cols, 10, 10)
+        
+        # Check entrance (top wall of first cell)
+        self.assertFalse(m5._cells[0][0].has_top_wall)
+        
+        # Check exit (bottom wall of last cell)
+        self.assertFalse(m5._cells[num_cols-1][num_rows-1].has_bottom_wall)
+        
+        # Check that other walls of entrance and exit cells are intact
+        entrance_cell = m5._cells[0][0]
+        self.assertTrue(entrance_cell.has_left_wall)
+        self.assertTrue(entrance_cell.has_right_wall)
+        self.assertTrue(entrance_cell.has_bottom_wall)
+        
+        exit_cell = m5._cells[num_cols-1][num_rows-1]
+        self.assertTrue(exit_cell.has_left_wall)
+        self.assertTrue(exit_cell.has_right_wall)
+        self.assertTrue(exit_cell.has_top_wall)
 
 if __name__ == "__main__":
     unittest.main() 
