@@ -1,46 +1,39 @@
 from tkinter import Tk, BOTH, Canvas
 from line import Line
 from point import Point
-
-class Window:
-    def __init__(self, width, height):
-        self.root = Tk()
-        self.root.title("Maze Runner")
-        self.canvas = Canvas(self.root, width=width, height=height)
-        self.canvas.pack(fill=BOTH, expand=1)
-        self.running = False
-        self.root.protocol("WM_DELETE_WINDOW", self.close)
-    
-    def redraw(self):
-        self.root.update_idletasks()
-        self.root.update()
-    
-    def wait_for_close(self):
-        self.running = True
-        while self.running:
-            self.redraw()
-    
-    def close(self):
-        self.running = False
-    
-    def draw_line(self, line, fill_color):
-        line.draw(self.canvas, fill_color)
+from window import Window
+from cell import Cell
 
 def main():
     win = Window(800, 600)
     
-    # Create some test points
-    p1 = Point(100, 100)
-    p2 = Point(200, 200)
-    p3 = Point(300, 100)
+    # Create cells with different wall configurations
     
-    # Create and draw some lines
-    line1 = Line(p1, p2)
-    line2 = Line(p2, p3)
+    # Cell 1: All walls (default)
+    cell1 = Cell(win)
+    cell1.draw(50, 50, 100, 100)
     
-    # Draw the lines with different colors
-    win.draw_line(line1, "red")
-    win.draw_line(line2, "blue")
+    # Cell 2: No right wall
+    cell2 = Cell(win)
+    cell2.has_right_wall = False
+    cell2.draw(100, 50, 150, 100)
+    
+    # Cell 3: No left wall (connects to cell 2)
+    cell3 = Cell(win)
+    cell3.has_left_wall = False
+    cell3.draw(150, 50, 200, 100)
+    
+    # Cell 4: Only top and bottom walls
+    cell4 = Cell(win)
+    cell4.has_left_wall = False
+    cell4.has_right_wall = False
+    cell4.draw(50, 150, 200, 200)
+    
+    # Cell 5: Only side walls
+    cell5 = Cell(win)
+    cell5.has_top_wall = False
+    cell5.has_bottom_wall = False
+    cell5.draw(250, 50, 300, 200)
     
     win.wait_for_close()
 
