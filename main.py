@@ -11,6 +11,13 @@ def main():
     # Use seed=0 for reproducible testing
     maze = Maze(50, 50, 12, 12, 40, 40, win, seed=0)
     
+    # Solve the maze
+    print("Solving the maze...")
+    if maze.solve():
+        print("Maze solved!")
+    else:
+        print("No solution found!")
+    
     win.wait_for_close()
 
 if __name__ == "__main__":
