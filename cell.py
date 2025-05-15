@@ -19,6 +19,9 @@ class Cell:
         self._y1 = y1
         self._y2 = y2
         
+        if self._win is None:
+            return
+            
         if self.has_left_wall:
             line = Line(Point(x1, y1), Point(x1, y2))
             self._win.draw_line(line, "black")
@@ -36,6 +39,9 @@ class Cell:
             self._win.draw_line(line, "black")
     
     def draw_move(self, to_cell, undo=False):
+        if self._win is None:
+            return
+            
         # Calculate center points of both cells
         from_center_x = (self._x1 + self._x2) / 2
         from_center_y = (self._y1 + self._y2) / 2
