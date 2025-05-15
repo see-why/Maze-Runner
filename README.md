@@ -2,7 +2,7 @@
 
 A Python application that generates and solves mazes using depth-first search algorithms. Watch as the maze is created and then solved in real-time with a visual representation of the solving process.
 
-![Maze Runner Demo](demo.gif)
+![Maze Runner Demo](maze_runner.gif)
 (To add the demo: Record your screen while running the application, save as demo.gif in the project root)
 
 ## Features
