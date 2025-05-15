@@ -29,6 +29,7 @@ class Maze:
         
         self._create_cells()
         self._break_walls_r(0, 0)  # Start breaking walls from the top-left cell
+        self._reset_cells_visited()  # Reset visited flags after generating maze
         if create_entrance_exit:
             self._break_entrance_and_exit()
     
@@ -115,4 +116,10 @@ class Maze:
                 self._cells[next_i][next_j].has_top_wall = False
             
             # Recursively visit the chosen cell
-            self._break_walls_r(next_i, next_j) 
+            self._break_walls_r(next_i, next_j)
+    
+    def _reset_cells_visited(self):
+        """Reset the visited flag of all cells to False."""
+        for i in range(self._num_cols):
+            for j in range(self._num_rows):
+                self._cells[i][j].visited = False 
